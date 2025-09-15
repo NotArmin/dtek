@@ -8,7 +8,7 @@ void print_number(int n){
 }
 
 void print_sieves(int n){
-    char sieve[n + 1]; // Create array on the stack
+    char *sieve = malloc(n + 1); // Allocate memory on heap
 
     // Initiate all bits to 1 (true)
     for (int i = 0; i <= n; i++) {
@@ -39,6 +39,8 @@ void print_sieves(int n){
         printf("\n");
     }
     
+
+    free(sieve);
 }
 
 int main(int argc, char *argv[]){
