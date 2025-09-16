@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 #define COLUMNS 6
 
@@ -12,7 +13,7 @@ void print_sieves(int n){
 
     // Initiate all bits to 1 (true)
     for (int i = 0; i <= n; i++) {
-        sieve[i] = 0xFF;
+        sieve[i] = 1;
     }
 
     // Sieve of Eratosthenes
@@ -43,13 +44,25 @@ void print_sieves(int n){
     free(sieve);
 }
 
+void benchmark_sieves(int n) {
+    clock_t start, end;
+    double cpu_time_used;
+
+    start = clock();
+    print_sieves(n);
+    end = clock();
+
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Time taken to compute primes up to %d: %f seconds\n", n, cpu_time_used);
+}
+
 int main(int argc, char *argv[]){
     if(argc == 2){
         int limit = atoi(argv[1]);
         if (limit < 2) {
             printf("Please provide an integer greater than 1.\n");
         } else {
-        print_sieves(limit);
+        benchmark_sieves(limit);
         }
     } else {
         printf("Please state an integer number.\n");

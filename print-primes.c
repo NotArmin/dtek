@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define COLUMNS 6
 
@@ -44,6 +45,18 @@ void print_primes(int n){
     }
 }
 
+void benchmark_primes(int n) {
+    clock_t start, end;
+    double cpu_time_used;
+
+    start = clock();
+    print_primes(n);
+    end = clock();
+
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Time taken to compute primes up to %d: %f seconds\n", n, cpu_time_used);
+}
+
 // 'argc' contains the number of program arguments, and
 // 'argv' is an array of char pointers, where each
 // char pointer points to a null-terminated string.
@@ -53,7 +66,7 @@ int main(int argc, char *argv[]){
         if (limit < 2) {
             printf("Please provide an integer greater than 1.\n");
         } else {
-        print_primes(limit);
+        benchmark_primes(limit);
         }
     } else {
         printf("Please state an integer number.\n");
