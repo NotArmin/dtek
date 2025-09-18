@@ -28,8 +28,8 @@ void copycodes(const char* text, int* list, int* count) {
 }
 
 void work() {
-  copycodes(text1, list1, counter);
-  copycodes(text2, list2, counter);
+  copycodes(text1, list1, &counter);
+  copycodes(text2, list2, &counter);
 }
 
 void printlist(const int* lst){
