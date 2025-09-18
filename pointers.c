@@ -14,7 +14,7 @@ char* text2 = "Yet another thing.";
 int counter = 0;
 
 int list1[20];
-int list2[20];
+int list2[20]; 
 
 void copycodes(const char* text, int* list, int* count) {
   while (*text != '\0') {
