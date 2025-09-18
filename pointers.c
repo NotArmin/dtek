@@ -5,6 +5,10 @@
  This file is in the public domain.
 */
 
+/*
+Ändringar
+*/
+
 
 #include <stdio.h>
 #include <stdlib.h>
