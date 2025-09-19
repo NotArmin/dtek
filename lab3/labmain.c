@@ -17,6 +17,19 @@ extern int nextprime( int );
 int mytime = 0x5957;
 char textstring[] = "text, more text, and even more text!";
 
+const int segment_map[10] = {
+  0x3F, // 0 00111111
+  0x06, // 1 00000110
+  0x5B, // 2 01011011
+  0x4F, // 3 01001111
+  0x66, // 4 01100110
+  0x6D, // 5 01101101
+  0x7D, // 6 01111101
+  0x07, // 7 00000111
+  0x7F, // 8 01111111
+  0x6F, // 9 01101111
+};
+
 /* Function to turn LED's on or off*/
 void set_leds(int led_mask) {
   volatile int *leds = (int *)0x04000000; // address of the LED's
@@ -36,7 +49,7 @@ void increment_leds() {
 /* Function to set a value to a desired display */
 void set_displays (int display_number, int value) {
   volatile int *display = (int *)0x04000050 + (display_number * 0x10);
-  *display = value & 0x7F; // 0x7F = 01111111, 7 lsb
+  *display = ~segment_map[value] & 0x7F; // 0x7F = 01111111, 7 lsb
 }
 
 int get_sw(void) {
